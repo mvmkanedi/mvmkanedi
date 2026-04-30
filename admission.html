@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Admission - SMMS & STSS Jr. College</title>
+    <link rel="stylesheet" href="css/style.css">
+<header><h2>SMMS & STSS Jr. College, Kanedi</h2><nav><a href="index.html">Home</a><a href="about.html">About</a><a href="courses.html">Courses</a><a href="faculty.html">Faculty</a><a href="gallery.html">Gallery</a><a href="notice.html" class="active">Notice</a><a href="admission.html">Admission</a><a href="contact.html">Contact</a></nav></header>
+<style>
+    /* Form Labels Left Align Fix */
+    .page-content form label {
+        display: block !important;
+        text-align: left !important;
+        margin-top: 15px !important;
+        margin-bottom: 5px !important;
+        font-weight: 600 !important;
+        color: #0a4d68 !important;
+    }
+    
+    .page-content form input, 
+    .page-content form select, 
+    .page-content form textarea {
+        width: 100% !important;
+        padding: 12px !important;
+        border: 1px solid #ccc !important;
+        border-radius: 5px !important;
+        box-sizing: border-box !important;
+        font-size: 16px !important;
+        margin-bottom: 5px !important;
+    }
+    
+    .page-content form .btn {
+        margin-top: 20px !important;
+        width: 100% !important;
+    }
+</style>
+</head>
+</head>
+<body>
+    
+    </nav>
+
+    <main class="container page-content">
+        <section class="card">
+            <h2>Online Admission 2026-27</h2>
+
+            <div class="card" style="background:#e8f5e9; border-left:5px solid #25D366; text-align:center; margin-bottom:2rem;">
+                <h3>🎓 Official Maharashtra FYJC Admission Portal</h3>
+                <p>XI Arts, Commerce & Science साठी Maharashtra Government च्या official website वरून admission करा.</p>
+                <p><strong>Seats Available:</strong> Arts-60 | Commerce-80 | Science-120</p>
+                <a href="https://mahafyjcadmission.in" class="btn" target="_blank" style="background:#25D366; font-size:1.1rem;">Apply on mahafyjcadmission.in →</a>
+                <p style="font-size:0.9rem; margin-top:15px; color:#0a4d68;"><strong>Important:</strong> Board वर form भरल्यानंतर documents घेऊन college मध्ये संपर्क करा.</p>
+            </div>
+
+            <h3 style="text-align:center;">OR</h3>
+            <h3 style="text-align:center; margin:1.5rem 0;">College Inquiry Form</h3>
+            <p style="text-align:center;">Admission बाबत काही शंका असेल, stream select करायची असेल, तर खालील form भरा. आम्ही तुम्हाला 24 तासात call करू.</p>
+
+            <form name="admission-inquiry" method="POST" data-netlify="true" action="/thank-you.html">
+                <input type="hidden" name="form-name" value="admission-inquiry">
+                
+                <label>Student Full Name *</label>
+                <input type="text" name="student_name" required>
+
+                <label>Father's Name *</label>
+                <input type="text" name="father_name" required>
+
+                <label>10th Seat No *</label>
+                <input type="text" name="seat_no" pattern="[A-Za-z][0-9]{6}" placeholder="e.g. B023709" title="First letter A-Z followed by 6 digits" required>
+
+                <label>Gender *</label>
+                <select name="gender" required>
+                    <option value="">--Select--</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+
+                <label>Mobile Number *</label>
+                <input type="tel" name="mobile" pattern="[0-9]{10}" placeholder="10 digit number" required>
+
+                <label>Email</label>
+                <input type="email" name="email">
+
+                <label>School Index No *</label>
+                <input type="text" name="school_index" pattern="[0-9]{2}\.[0-9]{2}\.[0-9]{3}" placeholder="e.g. 26.03.007" title="Format: 26.03.007" required>
+
+                <label>Full Address *</label>
+                <textarea name="address" rows="3" placeholder="At Post, Taluka, District" required></textarea>
+
+                <label>Interested Stream *</label>
+                <select name="stream" required>
+                    <option value="">--Select--</option>
+                    <option value="Arts">Arts - 60 Seats</option>
+                    <option value="Commerce">Commerce - 80 Seats</option>
+                    <option value="Science">Science - 120 Seats</option>
+                </select>
+
+                <label>Your Query</label>
+                <textarea name="query" rows="3" placeholder="उदा: Science साठी IT subject मिळेल का?"></textarea>
+
+                <button type="submit" class="btn">Send Inquiry to College</button>
+            </form>
+            <p style="margin-top:1rem; font-size:0.9rem; text-align:center;">* Inquiry submit केल्यावर data mvmkanedi@gmail.com वर येईल.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p><strong>SMMS & STSS Jr. College, Kanedi</strong></p>
+        <p>Principal: Shri. S.D. Dalvi | Mob: 942206509 | Email: mvmkanedi@gmail.com</p>
+        <p>© 2026 All Rights Reserved</p>
+    </footer>
+    <a href="https://wa.me/91942206509" class="whatsapp-btn">WhatsApp</a>
+</body>
+</html>

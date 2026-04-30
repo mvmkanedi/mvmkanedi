@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result - SMMS & STSS Jr. College, Kanedi</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+ .result-box { background: #f9f9f9; padding: 1.5rem; border-radius: 8px; margin-top: 1.5rem; border: 2px solid #0a4d68; overflow-x: auto; }
+ .result-box table { margin: 0; width: 100%; min-width: 400px; }
+ .pass { color: green; font-weight: bold; }
+ .fail { color: red; font-weight: bold; }
+ .btn-group { text-align: center; margin-top: 1rem; }
+ .btn-group.btn { margin: 5px; }
+
+    @media print {
+        header, nav, footer,.card > div:first-of-type,.btn-group,.whatsapp-btn { display: none!important; }
+     .result-box { border: 1px solid #000; margin: 0; }
+        body { background: #fff; }
+    }
+    @media (max-width: 600px) {
+      .btn-group.btn { width: 100%; margin: 5px 0; }
+     .result-box { padding: 1rem; }
+    }
+    </style>
+</head>
+<body>
+    <header><h2>SMMS & STSS Jr. College, Kanedi</h2><nav><a href="index.html">Home</a><a href="about.html">About</a><a href="courses.html">Courses</a><a href="faculty.html">Faculty</a><a href="gallery.html">Gallery</a><a href="notice.html" class="active">Notice</a><a href="admission.html">Admission</a><a href="contact.html">Contact</a></nav></header>
+
+
+    
+    </nav>
+
+    <main class="container page-content">
+        <section class="card">
+            <h2>XI Exam Results 2025-26</h2>
+            <p>Select your stream and enter seat number to check result.</p>
+
+            <div style="max-width:500px; margin:2rem auto; padding:2rem; background:#f9f9f9; border-radius:8px;">
+                <label for="stream">Select Stream:</label>
+                <select id="stream" name="stream" required>
+                    <option value="">-- Select Stream --</option>
+                    <option value="science">XI Science</option>
+                    <option value="arts">XI Arts</option>
+                    <option value="commerce">XI Commerce</option>
+                </select>
+
+                <label for="rollno">Enter Seat Number:</label>
+                <input type="text" id="rollno" name="rollno" placeholder="e.g. 1" required>
+
+                <button type="button" class="btn" style="width:100%; margin-top:1rem;" onclick="checkResult()">Check Result</button>
+            </div>
+
+            <div id="result-msg"></div>
+
+            <div style="margin-top:3rem; padding:1rem; background:#e8f4f8; border-radius:8px;">
+                <h3>Note:</h3>
+                <p>1. Online result is for immediate information only.</p>
+                <p>2. For official marksheet, contact college office.</p>
+                <p>3. Helpline: 9420206508 | Email: mvmkanedi@gmail.com</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p><strong>SMMS & STSS Jr. College, Kanedi</strong></p>
+        <p>Principal: Shri. S.D. Dalvi | Mob: 9420206508 | Email: mvmkanedi@gmail.com</p>
+        <p>© 2026 All Rights Reserved</p>
+    </footer>
+    <a href="https://wa.me/919420206508" class="whatsapp-btn">WhatsApp</a>
+
+    <script>
+    async function checkResult() {
+        var stream = document.getElementById('stream').value;
+        var rollno = document.getElementById('rollno').value.trim();
+        var msg = document.getElementById('result-msg');
+
+        if(stream == "" || rollno == "") {
+            msg.innerHTML = '<p style="color:red; text-align:center; font-weight:bold;">Please select stream and enter seat number</p>';
+            return;
+        }
+
+        msg.innerHTML = '<p style="color:blue; text-align:center;">Searching... ⏳</p>';
+        const sheetURL = 'results.csv';
+
+        try {
+            const response = await fetch(sheetURL);
+            if (!response.ok) throw new Error('CSV file not found');
+
+            const data = await response.text();
+            const rows = data.split('\n').map(row => row.split(','));
+
+            const student = rows.slice(1).find(row =>
+                row[0] && row[0].trim() == rollno &&
+                row[2] && row[2].trim().toLowerCase() == stream
+            );
+
+            if(student) {
+                let resultText = student[13].trim().toUpperCase();
+                let resultClass = resultText == 'PASS'? 'pass' : 'fail';
+
+                let subjectRows = '';
+
+                if(stream === 'science') {
+                    subjectRows = `
+                        <tr><td><strong>English</strong></td><td>${student[3]}</td></tr>
+                        <tr><td><strong>Information Technology</strong></td><td>${student[4]}</td></tr>
+                        <tr><td><strong>Physics</strong></td><td>${student[5]}</td></tr>
+                        <tr><td><strong>Chemistry</strong></td><td>${student[6]}</td></tr>
+                        <tr><td><strong>Biology</strong></td><td>${student[7]}</td></tr>
+                        <tr><td><strong>Maths</strong></td><td>${student[8]}</td></tr>
+                        <tr><td><strong>Geography</strong></td><td>${student[9]}</td></tr>
+                        <tr><td><strong>Marathi</strong></td><td>${student[10]}</td></tr>
+                    `;
+                } else if(stream === 'commerce') {
+                    subjectRows = `
+                        <tr><td><strong>English</strong></td><td>${student[3]}</td></tr>
+                        <tr><td><strong>Marathi</strong></td><td>${student[4]}</td></tr>
+                        <tr><td><strong>Economics</strong></td><td>${student[5]}</td></tr>
+                        <tr><td><strong>Book Keeping</strong></td><td>${student[6]}</td></tr>
+                        <tr><td><strong>Geography</strong></td><td>${student[7]}</td></tr>
+                        <tr><td><strong>Secretarial Practice</strong></td><td>${student[8]}</td></tr>
+                        <tr><td><strong>Org. of Commerce</strong></td><td>${student[9]}</td></tr>
+                        <tr><td><strong>Information Technology</strong></td><td>${student[10]}</td></tr>
+                    `;
+                } else if(stream === 'arts') {
+                    subjectRows = `
+                        <tr><td><strong>English</strong></td><td>${student[3]}</td></tr>
+                        <tr><td><strong>Marathi</strong></td><td>${student[4]}</td></tr>
+                        <tr><td><strong>Hindi</strong></td><td>${student[5]}</td></tr>
+                        <tr><td><strong>Economics</strong></td><td>${student[6]}</td></tr>
+                        <tr><td><strong>Geography</strong></td><td>${student[7]}</td></tr>
+                        <tr><td><strong>History</strong></td><td>${student[8]}</td></tr>
+                        <tr><td><strong>Political Science</strong></td><td>${student[9]}</td></tr>
+                    `;
+                }
+
+                msg.innerHTML = `
+                    <div id="result-to-print">
+                        <div class="result-box">
+                            <h3 style="text-align:center; color:#0a4d68;">SMMS & STSS Jr. College, Kanedi</h3>
+                            <h4 style="text-align:center;">XI ${student[2].toUpperCase()} Exam Result 2025-26</h4>
+                            <table class="committee-table">
+                                <tr><td><strong>Name</strong></td><td>${student[1]}</td></tr>
+                                <tr><td><strong>Seat No</strong></td><td>${student[0]}</td></tr>
+                                <tr><td><strong>Stream</strong></td><td>${student[2].toUpperCase()}</td></tr>
+                                ${subjectRows}
+                                <tr><td><strong>Total Marks</strong></td><td>${student[11]} / 600</td></tr>
+                                <tr><td><strong>Percentage</strong></td><td>${student[12]}%</td></tr>
+                                <tr><td><strong>Result</strong></td><td class="${resultClass}">${student[13]}</td></tr>
+                            </table>
+                            <p style="text-align:center; font-size:12px; margin-top:1rem;">This is a computer generated result. For official marksheet contact college office.</p>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button onclick="window.print()" class="btn">🖨️ Print Result</button>
+                        <button onclick="downloadPDF()" class="btn">📄 Download PDF</button>
+                    </div>
+                `;
+            } else {
+                msg.innerHTML = '<p style="color:red; text-align:center; font-weight:bold;">Result not found. Check Seat Number and Stream.</p>';
+            }
+        } catch(error) {
+            msg.innerHTML = '<p style="color:red; text-align:center;">Error: `results.csv` file not found. Use Live Server to run.</p>';
+        }
+    }
+
+    function downloadPDF() {
+        const element = document.getElementById('result-to-print');
+        const studentName = element.querySelector('table tr td:nth-child(2)').innerText;
+        const seatNo = element.querySelector('table tr:nth-child(2) td:nth-child(2)').innerText;
+
+        var opt = {
+            margin: 0.5,
+            filename: `Result_${seatNo}_${studentName}.pdf`,
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+        };
+        html2pdf().from(element).set(opt).save();
+    }
+    </script>
+</body>
+</html>

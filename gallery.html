@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - SMMS & STSS Jr. College, Kanedi</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #0a4d68;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        /* Lightbox साठी */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 3px solid white;
+            border-radius: 8px;
+        }
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+        @media (max-width: 600px) {
+            .gallery { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+            .gallery img { height: 150px; }
+        }
+    </style>
+</head>
+<body>
+   <header><h2>SMMS & STSS Jr. College, Kanedi</h2><nav><a href="index.html">Home</a><a href="about.html">About</a><a href="courses.html">Courses</a><a href="faculty.html">Faculty</a><a href="gallery.html">Gallery</a><a href="notice.html" class="active">Notice</a><a href="admission.html">Admission</a><a href="contact.html">Contact</a></nav></header>
+
+    </nav>
+
+    <main class="container page-content">
+        <section class="card">
+            <h2>Campus Gallery</h2>
+            <p>Our college campus, labs, events and activities</p>
+            
+            <div class="gallery">
+                <img src="images/college-gate.jpeg" alt="College Main Gate" onclick="openLightbox(this.src)">
+                <img src="images/college-campus.jpeg" alt="College Campus & Playground" onclick="openLightbox(this.src)">
+                <img src="images/botnical-garden.jpeg" alt="Botnical Garden Laboratory" onclick="openLightbox(this.src)">
+                <img src="images/computer-lab.jpeg" alt="Computer Lab" onclick="openLightbox(this.src)">
+                <img src="images/republic-day.jpeg" alt="Republic Day" onclick="openLightbox(this.src)">
+                <img src="images/atal-lab.jpg" alt="Sports Day" onclick="openLightbox(this.src)">
+            </div>
+
+            <p style="text-align:center; margin-top:1rem; color:#666;">Click on any photo to view in full size</p>
+        </section>
+    </main>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="close-btn">&times;</span>
+        <img id="lightbox-img" src="">
+    </div>
+
+    <footer>
+        <p><strong>SMMS & STSS Jr. College, Kanedi</strong></p>
+        <p>Principal: Shri. S.D. Dalvi | Mob: 9420206508 | Email: mvmkanedi@gmail.com</p>
+        <p>© 2026 All Rights Reserved</p>
+    </footer>
+    <a href="https://wa.me/919420206508" class="whatsapp-btn">WhatsApp</a>
+
+    <script>
+        function openLightbox(src) {
+            document.getElementById('lightbox').style.display = 'flex';
+            document.getElementById('lightbox-img').src = src;
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
