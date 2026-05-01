@@ -140,4 +140,69 @@ label {font-weight:bold; color:#0a4d68; display:block; margin-top:10px;}
         padding: 10px;
         box-sizing: border-box;
     }
-</style>
+</style>/* Mobile Slide Menu Fix */
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: -100%; /* लपवून ठेव */
+        width: 80%;  /* 80% screen घेईल */
+        max-width: 300px;
+        height: 100vh;
+        background: #0a4d68;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 60px 20px 20px 20px;
+        transition: left 0.3s ease;
+        z-index: 1000;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+    }
+
+    .nav-links.active {
+        left: 0; /* उघडल्यावर दिसेल */
+    }
+
+    .nav-links a {
+        color: white !important;
+        padding: 15px 0;
+        width: 100%;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        font-size: 18px;
+    }
+    
+    /* Menu उघडल्यावर background dark करायला */
+    .menu-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 999;
+    }
+    
+    .menu-overlay.active {
+        display: block;
+    }
+    
+    /* Hamburger Icon */
+    .hamburger {
+        display: block;
+        font-size: 28px;
+        cursor: pointer;
+        color: #0a4d68;
+        z-index: 1001;
+    }
+}
+
+/* Desktop वर hamburger लपव */
+.hamburger {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+}
